@@ -39,10 +39,10 @@ title.innerHTML = txt;
 if(pushcrew.isAPIReady) {
   var sub =  pushcrew.subscriberId; 
   var push_div = document.getElementById('pushcrew');
-  if(sub == 'false'){
+  if(sub == "false"){
   push_div.innerHTML = "<p>Subscriber ID: The User is not Subscribed to Push Notifications</p>";
   }
-  else if (sub=='-1'){
+  else if (sub==-1){
   push_div.innerHTML = "<p>Subscriber ID: The User has blocked Push Notifications</p>";
   }
   else{
