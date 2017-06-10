@@ -37,7 +37,19 @@ var title = document.getElementById('details');
 title.innerHTML = txt;
   
 if(pushcrew.isAPIReady) {
-    console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
+  var sub =  pushcrew.subscriberId; 
+  var push_div = document.getElementById('pushcrew');
+  if(sub = 'false'){
+  push_div.innerHTML = "<p>Subscriber ID: The User is not Subscribed to Push Notifications</p>";
+  }
+  else if (sub=-1){
+  push_div.innerHTML = "<p>Subscriber ID: The User has blocked Push Notifications</p>";
+  }
+  else{
+  push_div.innerHTML = "<p>Subscriber ID: "+ sub + "</p>";
+  }
+  
+  console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
 
   console.log(pushcrew.subscriberId); // will return false(boolean) if user is not subscribed to push notifications
 
@@ -64,8 +76,8 @@ if(pushcrew.isAPIReady) {
 <body>  
 <h1>Telenor Demo</h1>
 <input type="submit" id="byBtn" value="Get Details" onclick="getDetails()"/>
+<div id=pushcrew></div>
 <div id="details"></div>
-<div id="ip"></div>
 </body>
   
 </html>
