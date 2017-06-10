@@ -39,21 +39,17 @@ title.innerHTML = txt;
 if(pushcrew.isAPIReady) {
   var sub =  pushcrew.subscriberId; 
   var push_div = document.getElementById('pushcrew');
-  if(sub == false){
+  if(sub == 'false'){
   push_div.innerHTML = "<p>Pushcrew Subscriber ID: The User is not Subscribed to Push Notifications</p>";
   }
   else if (sub == -1){
-  push_div.innerHTML = "<p>Pushcrew Subscriber ID: The User has blocked Push Notifications</p>";
+  push_div.innerHTML = "<p>Pushcrew Subscriber ID: The User has blocked Push Notifications from your website.</p>";
   }
   else{
   push_div.innerHTML = "<p>Pushcrew Subscriber ID: "+ sub + "</p>";
   }
   
   console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
-
-  console.log(pushcrew.subscriberId); // will return false(boolean) if user is not subscribed to push notifications
-
-  console.log(pushcrew.subscriberId); // will return -1(integer) if user has blocked push notifications from your website   
 }
 
 }
