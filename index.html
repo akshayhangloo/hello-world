@@ -1,0 +1,50 @@
+<html>
+<title>Demo</title>
+<head>
+
+<script src="ua-parser.js"></script>
+
+<script type="text/javascript">
+  var userip;
+</script>
+
+<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+
+<script type="text/javascript">
+function getDetails(){
+
+var d = new Date();
+var txt = "<p>Date: " + d.toUTCString() + "</p>";
+
+
+var parser = new UAParser();
+//var uastring = "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
+var uastring = navigator.userAgent;
+parser.setUA(uastring);
+var result = parser.getResult();
+
+//txt += "<p>User-agent header: " + navigator.userAgent + "</p>";
+txt +="<p>OS: " + result.os.name + "</p>";
+txt +="<p>OS version: " + result.os.version +"</p>";
+txt +="<p>Browser: " + result.browser.name + "</p>";
+txt +="<p>Browser Version: " + result.browser.version + "</p>";
+txt +="<p>Device Vendor: " + result.device.vendor + "</p>";
+txt +="<p>Device Type: " + result.device.type  + "</p>";
+txt +="<p>Device Model: " + result.device.model + "</p>";
+txt +="<p>IP Address: " + userip + "</p>";
+
+var title = document.getElementById('details');
+title.innerHTML = txt;
+
+}
+</script>
+
+</head>
+<body>  
+<h1>Telenor Demo</h1>
+<input type="submit" id="byBtn" value="Get Details" onclick="getDetails()"/>
+<div id="details"></div>
+<div id="ip"></div>
+</body>
+  
+</html>
