@@ -72,6 +72,9 @@ if(pushcrew.isAPIReady) {
 <body>  
 <h1>Telenor Demo</h1>
 <input type="submit" id="byBtn" value="Get Details" onclick="getDetails()"/>
+<button onclick="_pcq.push(['triggerOptIn',{httpWindowOnly: true}]);">
+GET NOTIFICATIONS
+</button>
 <div id=pushcrew></div>
 <div id="details"></div>
 </body>
