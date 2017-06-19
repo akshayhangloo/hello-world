@@ -47,6 +47,33 @@ if(pushcrew.isAPIReady) {
   }
   else{
   push_div.innerHTML = "<p>Pushcrew Subscriber ID: "+ sub + "</p>";
+    
+  function callbackOnAPIReady() {
+    //now api is ready
+   if(result.device.type == 'undefined') { 
+    _pcq.push(['addSubscriberToSegment', 'desktop', callbackForAddToSegment]);
+   }
+    else if (result.device.type == 'mobile'){
+    _pcq.push(['addSubscriberToSegment', 'mobile', callbackForAddToSegment]);
+   }
+    else {
+     _pcq.push(['addSubscriberToSegment', 'other device', callbackForAddToSegment]);
+   }
+}
+
+function callbackForAddToSegment(response) {
+    if(response === -1) {
+        console.log('User is not a subscriber or has blocked notifications');
+    }
+  
+    if(response === false) {
+        console.log('Segment name provided is not valid. Maximum length of segment name can be 30 chars and it can only contain alphanumeric characters, underscore and dash.');
+    }
+  
+    if(response === true) {
+        console.log('User got added to the segment successfully. Now you may run any code you wish to execute after user gets added to segment successfully');
+    }
+
   }
   
   console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
