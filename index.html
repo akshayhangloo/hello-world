@@ -35,7 +35,7 @@ txt +="<p>IP Address: " + userip + "</p>";
 
 var title = document.getElementById('details');
 title.innerHTML = txt;
-  
+    
 if(pushcrew.isAPIReady) {
   var sub =  pushcrew.subscriberId; 
   var push_div = document.getElementById('pushcrew');
@@ -47,20 +47,25 @@ if(pushcrew.isAPIReady) {
   }
   else{
   push_div.innerHTML = "<p>Pushcrew Subscriber ID: "+ sub + "</p>";
-    
-  function callbackOnAPIReady() {
+  callbackONAPIReady();  
+  }
+  
+  console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
+}
+
+function callbackOnAPIReady() {
     //now api is ready
-   if(result.device.type == 'undefined') { 
+   if(result.device.type === 'undefined') { 
     _pcq.push(['addSubscriberToSegment', 'desktop', callbackForAddToSegment]);
    }
-    else if (result.device.type == 'mobile'){
+    else if (result.device.type === 'mobile'){
     _pcq.push(['addSubscriberToSegment', 'mobile', callbackForAddToSegment]);
    }
     else {
      _pcq.push(['addSubscriberToSegment', 'other device', callbackForAddToSegment]);
    }
-}
-
+  }  
+  
 function callbackForAddToSegment(response) {
     if(response === -1) {
         console.log('User is not a subscriber or has blocked notifications');
@@ -75,9 +80,6 @@ function callbackForAddToSegment(response) {
     }
 
   }
-  
-  console.log(pushcrew.subscriberId); // will return something like this if current user is a subscriber '1c5d546172cfb4be65a8d51b047c4804'
-}
 
 </script> 
   
